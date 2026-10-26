@@ -7,10 +7,12 @@
 <meta name="theme-color" content="#FFF7F2"/>
 <meta property="og:title" content="Đình Nam & Hồng Nhung – Wedding Invitation"/>
 <meta property="og:description" content="Trân trọng kính mời bạn tới chung vui cùng Đình Nam & Hồng Nhung"/>
-<meta property="og:image" content="hero.webp"/>
+<meta property="og:image" content="https://weddinginvitationhappy.github.io/nam-nhung/hero.webp"/>
+<meta property="og:url" content="https://weddinginvitationhappy.github.io/nam-nhung/"/>
+<meta name="twitter:card" content="summary_large_image"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
-<link rel="preload" as="image" href="1.webp" fetchpriority="high"/>
+<link rel="preload" as="image" href="https://weddinginvitationhappy.github.io/nam-nhung/hero.webp" fetchpriority="high"/>
 <link rel="preconnect" href="https://images.unsplash.com"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -95,7 +97,7 @@ a{color:inherit}
 .md-bg{
   position:absolute;
   inset:-40px;
-  background:url('1.webp') center top/cover no-repeat;
+  background:url('https://weddinginvitationhappy.github.io/nam-nhung/hero.webp') center top/cover no-repeat;
   opacity:.13;
   filter:blur(18px) saturate(.82);
   transform:scale(1.08);
@@ -1402,7 +1404,7 @@ body{letter-spacing:.003em}
 
 <div id="app">
   <section id="hero" class="sec">
-    <img class="hero-img" src="1.webp" alt="Đình Nam và Hồng Nhung" decoding="async" fetchpriority="high"/>
+    <img class="hero-img" src="https://weddinginvitationhappy.github.io/nam-nhung/hero.webp" alt="Đình Nam và Hồng Nhung" decoding="async" fetchpriority="high"/>
     <div class="hero-overlay"></div>
     <div class="hero-top">
       <div class="hero-mark">N&amp;N</div>
@@ -1624,7 +1626,7 @@ body{letter-spacing:.003em}
   </section>
 
   <section id="closing" class="sec">
-    <img class="close-bg" src="hero.webp" alt="Thank you" loading="lazy" decoding="async"/>
+    <img class="close-bg" src="https://weddinginvitationhappy.github.io/nam-nhung/hero.webp" alt="Thank you" loading="lazy" decoding="async"/>
     <div class="close-filter"></div>
     <div class="close-content">
       <div class="close-room" id="closingEventDate" data-reveal>Hẹn gặp bạn · 16.11.2026 · 08/10 ÂL</div>
@@ -1664,7 +1666,7 @@ body{letter-spacing:.003em}
 <script>
 // Dán URL Web App sau khi Deploy Google Apps Script vào đây.
 // Ví dụ: AKfycbyT_kxHxRLP5G0dTSOEBJtOE1MK_7tga2D98UJ6OfH5KIY6jF4HfYlk92_iDYriVbTvGg
-const GOOGLE_SCRIPT_URL=''; // Dán URL Apps Script MỚI của Đình Nam & Hồng Nhung trước khi bật ghi lời chúc lên Sheets.
+const GOOGLE_SCRIPT_URL='https://script.google.com/macros/s/AKfycbyT_kxHxRLP5G0dTSOEBJtOE1MK_7tga2D98UJ6OfH5KIY6jF4HfYlk92_iDYriVbTvGg/exec'; // Giữ kết nối Google Sheets từ file cũ người dùng gửi.
 
 // Thiệp cưới chung ngày 16/11/2026; chỉ cần ?guest=Tên-Khách-Mời.
 // Các mã sự kiện của thiệp cũ không còn được sử dụng.
@@ -1859,7 +1861,7 @@ function openQrModal(btn){
   qrModal.setAttribute('aria-hidden','false');
   document.body.classList.add('modal-open');
   // Đường dẫn tương đối được phân giải theo vị trí index.html, kể cả khi có ?guest=.
-  qrModalImage.src=new URL(btn.dataset.qr,document.baseURI).href;
+  qrModalImage.src=new URL(btn.dataset.qr,'https://weddinginvitationhappy.github.io/nam-nhung/').href;
   setTimeout(()=>document.getElementById('qrClose').focus(),30);
 }
 function closeQrModal(){
@@ -1876,8 +1878,10 @@ qrModal.addEventListener('click',e=>{if(e.target===qrModal)closeQrModal()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&qrModal.classList.contains('open'))closeQrModal()});
 
 /* RSVP + GOOGLE SHEETS · robust read/write sync */
-const WISH_CACHE_KEY='dinh_nam_hong_nhung_wishes_cache_v1';
-const WISH_PENDING_KEY='dinh_nam_hong_nhung_wishes_pending_v1';
+const WEDDING_WISH_ID='nam-nhung-2026';
+const WEDDING_WISH_TAG='【NAM-NHUNG-2026】'; // Nhận diện lời chúc trong Google Sheet đang dùng chung với thiệp cũ.
+const WISH_CACHE_KEY='nam_nhung_2026_wishes_cache_v1';
+const WISH_PENDING_KEY='nam_nhung_2026_wishes_pending_v1';
 let wishStore=[];
 let wishLoadPromise=null;
 let liveTimer=null;
@@ -1895,15 +1899,28 @@ function wishKey(item){
   ].join('|'));
 }
 function normalizeWish(item){
+  item=item||{};
+  const rawWish=String(item.wish||item.message||'').trim();
+  const tagPresent=rawWish.startsWith(WEDDING_WISH_TAG);
+  const cleanWish=tagPresent?rawWish.slice(WEDDING_WISH_TAG.length).trim():rawWish;
+  const origin=String(item.page||item.source||'');
+  const wedding=String(item.weddingId||item.wedding||'');
+  const type=String(item.type||'wish').trim();
+  const mine=Boolean(item.pending)||tagPresent||wedding===WEDDING_WISH_ID||
+    /(?:^|\/)nam-nhung(?:\/|\?|$)/i.test(origin)||type.startsWith('nn2026_');
   return {
     id:String(item.id||item.requestId||''),
     name:String(item.name||item.guest||'Khách mời').trim()||'Khách mời',
-    wish:String(item.wish||'').trim(),
+    wish:cleanWish,
     attendance:String(item.attendance||'').trim(),
-    type:String(item.type||'wish').trim(),
+    type:type.replace(/^nn2026_/,''),
     createdAt:String(item.createdAt||item.time||'').trim(),
-    pending:Boolean(item.pending)
+    pending:Boolean(item.pending),
+    weddingId:mine?WEDDING_WISH_ID:''
   };
+}
+function onlyOurWishes(items){
+  return (Array.isArray(items)?items:[]).map(normalizeWish).filter(x=>x.wish&&x.weddingId===WEDDING_WISH_ID);
 }
 function formatWishTime(value){
   if(!value)return '';
@@ -1920,12 +1937,12 @@ function renderWishList(){
   const list=document.getElementById('wishList');
   const count=document.getElementById('wishCount');
   list.innerHTML='';
-  const valid=wishStore.filter(x=>x.wish);
+  const valid=wishStore.filter(x=>x.wish&&x.weddingId===WEDDING_WISH_ID);
   count.textContent=valid.length?`${valid.length} lời chúc gần nhất`:'Sổ lời chúc';
   if(!valid.length){
     const state=document.createElement('div');
     state.className='wish-state';
-    state.textContent='Hãy gửi một lời chúc thật đẹp đến cô dâu và chú rể nhé! 💕';
+    state.textContent='Chưa có lời chúc nào cho Đình Nam & Hồng Nhung. Gửi một lời chúc thật đẹp nhé! 💕';
     list.appendChild(state);
     return;
   }
@@ -1964,14 +1981,14 @@ function cacheWishes(){
 function loadWishCache(){
   const cache=safeLocalGet(WISH_CACHE_KEY,null);
   if(cache&&Array.isArray(cache.wishes)&&cache.wishes.length){
-    wishStore=cache.wishes.map(normalizeWish).filter(x=>x.wish);
+    wishStore=onlyOurWishes(cache.wishes);
     renderWishList();
   }
 }
 function addOptimisticWish(name,text,type='wish',attendance=''){
   const item=normalizeWish({
     id:'local-'+Date.now()+'-'+Math.random().toString(36).slice(2),
-    name,wish:text,type,attendance,createdAt:new Date().toISOString(),pending:!!sheetConfigured()
+    name,wish:text,type,attendance,createdAt:new Date().toISOString(),pending:!!sheetConfigured(),weddingId:WEDDING_WISH_ID
   });
   wishStore=[item,...wishStore.filter(x=>wishKey(x)!==wishKey(item))].slice(0,5);
   renderWishList();
@@ -1979,7 +1996,7 @@ function addOptimisticWish(name,text,type='wish',attendance=''){
   return item;
 }
 function mergeServerWishes(serverWishes){
-  const normalized=(serverWishes||[]).map(normalizeWish).filter(x=>x.wish);
+  const normalized=onlyOurWishes(serverWishes);
   const map=new Map();
   normalized.forEach(x=>map.set(wishKey(x),x));
   // Giữ lời chúc vừa gửi ở trạng thái pending trong lúc Sheet chưa kịp phản hồi.
@@ -2019,7 +2036,7 @@ async function fetchJson(url,timeout=8000){
 }
 function fetchJsonp(url,timeout=9000){
   return new Promise((resolve,reject)=>{
-    const callback='__quanQuynhWishCb_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+    const callback='__namNhungWishCb_'+Date.now()+'_'+Math.random().toString(36).slice(2);
     const script=document.createElement('script');
     let done=false;
     const cleanup=()=>{
@@ -2038,7 +2055,7 @@ function fetchJsonp(url,timeout=9000){
 }
 async function requestWishList(){
   const sep=GOOGLE_SCRIPT_URL.includes('?')?'&':'?';
-  const url=GOOGLE_SCRIPT_URL+sep+'action=list&limit=5&_='+Date.now();
+  const url=GOOGLE_SCRIPT_URL+sep+'action=list&limit=100&wedding='+encodeURIComponent(WEDDING_WISH_ID)+'&_='+Date.now();
   try{
     return await fetchJson(url,7000);
   }catch(firstError){
@@ -2057,14 +2074,15 @@ async function loadWishes({silent=false}={}){
   wishLoadPromise=(async()=>{
     try{
       const data=await requestWishList();
-      if(!data||!data.ok||!Array.isArray(data.wishes)){
+      const rows=data&&(Array.isArray(data.wishes)?data.wishes:Array.isArray(data.items)?data.items:null);
+      if(!data||!data.ok||!rows){
         throw new Error('Apps Script hiện chưa hỗ trợ action=list. Hãy cập nhật Code.gs bản FINAL và deploy phiên bản mới.');
       }
-      mergeServerWishes(data.wishes);
+      mergeServerWishes(rows);
       return {ok:true};
     }catch(error){
       console.warn('Không thể tải lời chúc từ Google Sheets:',error);
-      if(!wishStore.length)setWishState('Chưa thể tải sổ lời chúc. Web sẽ tự thử lại khi kết nối ổn định.',true);
+      if(!wishStore.length)setWishState('Sổ lời chúc đang tạm thời không tải được. Bạn vẫn có thể gửi lời chúc cho hai bạn 💌',true);
       return {ok:false,error};
     }finally{
       refresh.classList.remove('loading');
@@ -2104,11 +2122,12 @@ async function saveWishToGoogleSheet({name,wish,att='',type='wish'}){
   const payload={
     requestId:makeRequestId(),
     guest:name,
-    wish,
+    wish:WEDDING_WISH_TAG+wish,
     attendance:att,
-    type,
+    type:'nn2026_'+type,
+    weddingId:WEDDING_WISH_ID,
     createdAt:vietnamTimeISO(),
-    page:location.pathname+location.search,
+    page:'/nam-nhung/',
     guestParam:guestParam
   };
   try{
@@ -2145,7 +2164,7 @@ document.getElementById('sendRsvp').addEventListener('click',async()=>{
     msg.textContent='Lời chúc đã được lưu trên thiết bị này 💕';
     document.getElementById('rwish').value='';
   }else if(saved.ok){
-    msg.textContent=att==='yes'?'Đã gửi 💕 Chúng mình rất vui vì bạn sẽ có mặt!':'Đã gửi lời chúc vào sổ cưới 💌 Cảm ơn bạn thật nhiều!';
+    msg.textContent=att==='yes'?'Đang gửi xác nhận của bạn 💕 Cảm ơn bạn sẽ có mặt!':'Đang chuyển lời chúc vào sổ cưới 💌 Cảm ơn bạn thật nhiều!';
     document.getElementById('rwish').value='';
   }else{
     msg.textContent='Mạng đang không ổn định. Lời chúc đã được giữ trên thiết bị và web sẽ thử gửi lại khi có mạng 💌';
@@ -2189,7 +2208,7 @@ document.getElementById('sendQuick').addEventListener('click',async()=>{
   popHeart(innerWidth*.78,innerHeight*.82);
   setSending(btn,true,'...');
   const saved=await saveWishToGoogleSheet({name,wish:quickText,att:'',type:'quick'});
-  if(saved.configured&&saved.ok)liveBubble('Sổ lời chúc','Đã gửi lời chúc của bạn 💕');
+  if(saved.configured&&saved.ok)liveBubble('Sổ lời chúc','Đang gửi lời chúc của bạn 💕');
   else if(!saved.configured)liveBubble('Sổ lời chúc','Lời chúc đã lưu trên thiết bị này 💕');
   else liveBubble('Sổ lời chúc','Mạng yếu — lời chúc đang được chờ đồng bộ');
   setSending(btn,false,'Gửi');
@@ -2199,7 +2218,7 @@ document.getElementById('quickWish').addEventListener('keydown',e=>{
 });
 
 /* Dress code theme switcher */
-const THEME_KEY='dinh_nam_hong_nhung_theme_v1';
+const THEME_KEY='nam_nhung_theme_v2';
 const THEME_LABELS={ivory:'Ivory thanh lịch',blush:'Blush hồng phấn',rose:'Rose lãng mạn',champagne:'Champagne ấm áp'};
 const THEME_META={ivory:'#FFF9F4',blush:'#FFF7F2',rose:'#F9E9ED',champagne:'#FFF4E1'};
 function applyTheme(theme,{persist=true}={}){

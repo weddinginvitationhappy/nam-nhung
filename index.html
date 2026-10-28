@@ -1376,6 +1376,83 @@ body{letter-spacing:.003em}
 .meal-calendar{display:inline-block;margin-top:.4rem;color:var(--romance-deep);font-size:.74rem;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(185,108,128,.35);padding-bottom:2px}
 .meal-calendar:focus-visible,.meal-calendar:hover{color:var(--rose)}
 .cer-row>div:last-child{min-width:0;overflow-wrap:anywhere}
+
+
+/* =========================================================
+   WEDDING REFINEMENT · Teddy bears illustration + clear 2026 agenda
+   These overrides live last to respect the existing blush / ivory themes.
+   ========================================================= */
+.md-copy{padding:1.35rem;overflow:visible}
+.md-seal{
+  width:150px;height:150px;flex:0 0 auto;
+  background:radial-gradient(circle at 29% 23%,rgba(255,255,255,.98),rgba(255,252,249,.84) 50%,rgba(247,227,232,.62));
+  border:1px solid rgba(195,153,91,.49);
+  box-shadow:0 26px 62px rgba(130,77,86,.14),inset 0 0 0 5px rgba(255,255,255,.68),inset 0 0 0 6px rgba(195,153,91,.17);
+  position:relative;isolation:isolate;
+}
+.md-kicker{margin-bottom:1.85rem}
+.md-seal:before{top:-22px}
+.md-seal:after{bottom:-22px}
+/* Opening seal: a pair of lovingly illustrated teddy bears, not birds. */
+.md-teddies-seal{
+  width:156px;height:156px;padding:4px;
+  background:radial-gradient(circle at 38% 24%,#fff 0%,#fffdfb 47%,#ffeff3 100%);
+  box-shadow:0 18px 52px rgba(153,89,104,.12),0 0 0 6px rgba(255,255,255,.45),
+             inset 0 0 0 4px rgba(255,255,255,.64),inset 0 0 0 6px rgba(195,153,91,.10);
+}
+.md-teddies{width:100%;height:100%;display:block;overflow:visible;filter:drop-shadow(0 3px 4px rgba(111,60,69,.07))}
+.md-bear-heart{transform-origin:100px 27px;animation:mdTeddyHeartbeat 3.5s ease-in-out infinite}
+.md-bear-bow{transform-origin:34px 52px;animation:mdTeddyBow 4.7s ease-in-out infinite}
+@keyframes mdTeddyHeartbeat{0%,65%,100%{transform:scale(1)}72%{transform:scale(1.1)}80%{transform:scale(1)}}
+@keyframes mdTeddyBow{0%,100%{rotate:0deg}45%{rotate:-5deg}55%{rotate:4deg}}
+@media (prefers-reduced-motion:reduce){.md-bear-heart,.md-bear-bow{animation:none}}
+/* Calligraphic names in the original romantic style: one continuous flourish. */
+.md-names{
+  display:block;width:100%;max-width:410px;white-space:nowrap;
+  margin-top:1.34rem;padding:.15rem .1rem .03rem;
+  font-family:'Great Vibes','Z003','URW Chancery L',cursive;
+  font-weight:400;font-size:clamp(3.1rem,13vw,4.05rem);
+  line-height:1.32;letter-spacing:.005em;color:#bb7188;
+  text-shadow:0 9px 28px rgba(174,83,111,.14);
+}
+.md-date{margin-top:.1rem}
+.md-note{max-width:330px;line-height:1.5}
+/* Three distinct, readable lines; Room 01 deliberately contains no banquet copy. */
+.date-summary{
+  width:min(100%,395px);margin:1.55rem auto 0;
+  padding:.25rem .12rem .15rem;text-align:center;
+  display:grid;gap:.54rem;
+}
+.date-summary-day{
+  font-size:clamp(.91rem,3.7vw,1rem);font-weight:700;
+  color:var(--ink);line-height:1.6;
+}
+.date-summary-day span{white-space:nowrap;color:var(--rose);font-weight:600;font-size:.88em}
+.date-summary-event{
+  color:var(--muted);font-size:clamp(.87rem,3.45vw,.97rem);
+  line-height:1.62;text-wrap:pretty;
+}
+.date-summary-event strong{color:var(--rose);font-weight:700;white-space:nowrap}
+#dateRoom .calendar-card{margin-top:2.3rem}
+
+/* Ceremony time belongs on one emphasized line group, without a duplicate subtitle. */
+.cer-row{align-items:center;gap:.82rem;padding:.95rem .88rem}
+.cer-row-ceremony{border-color:rgba(201,165,111,.23)!important;background:linear-gradient(110deg,rgba(255,251,247,.98),rgba(255,243,247,.92))!important}
+.cer-row-meal{border-color:rgba(201,121,143,.18)!important;background:linear-gradient(110deg,rgba(255,245,249,.96),rgba(255,250,247,.92))!important}
+.cer-row-ceremony b,.cer-row-meal b{font-size:clamp(.81rem,3.28vw,.92rem);line-height:1.55;font-weight:700;letter-spacing:-.012em;overflow-wrap:normal}
+.cer-row .cer-lunar{display:inline;color:inherit;font-size:inherit;line-height:inherit;white-space:nowrap}
+.cer-row-meal span{margin-top:.17rem;font-size:clamp(.77rem,3vw,.86rem);line-height:1.6}
+.cer-row .cer-ico{width:37px;height:37px;font-size:1.05rem}
+.cer-row .meal-calendar{font-size:.76rem;margin-top:.55rem}
+@media(max-width:370px){
+  .md-seal{width:138px;height:138px}
+  .md-teddies-seal{width:144px;height:144px}
+  .md-names{font-size:clamp(2.96rem,12.6vw,3.55rem)}
+  .cer-info{padding:1.05rem}
+  .cer-row{gap:.56rem;padding:.78rem .67rem}
+  .cer-row .cer-ico{width:32px;height:32px}
+}
+
 </style>
 </head>
 <body>
@@ -1390,8 +1467,80 @@ body{letter-spacing:.003em}
   <div class="md-light" id="doorLight"></div>
   <div class="md-copy" id="doorCopy">
     <div class="md-kicker">Private Exhibition</div>
-    <div class="md-seal">N&amp;N</div>
-    <div class="md-names">Nam & Nhung</div>
+    <div class="md-seal md-teddies-seal" role="img" aria-label="Đôi gấu bông cô dâu chú rể dễ thương, ôm nhau bên trái tim hồng">
+      <svg class="md-teddies" viewBox="0 0 200 200" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="teddyCream" x1=".2" y1="0" x2=".85" y2="1"><stop offset="0" stop-color="#fff5eb"/><stop offset=".58" stop-color="#f3dbcc"/><stop offset="1" stop-color="#e8bfb2"/></linearGradient>
+          <linearGradient id="teddyCaramel" x1=".1" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="#fae5c6"/><stop offset=".58" stop-color="#e5bb91"/><stop offset="1" stop-color="#d19a73"/></linearGradient>
+          <linearGradient id="teddyBow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8cbd5"/><stop offset="1" stop-color="#cd7f9a"/></linearGradient>
+          <linearGradient id="teddyHeart" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#edaabc"/><stop offset="1" stop-color="#c97692"/></linearGradient>
+        </defs>
+        <!-- Blush-and-gold sparkle accents -->
+        <g fill="#d4b38e" opacity=".8">
+          <path d="M24 83q1.3 7 7 8-5.7 1.1-7 8-1.3-6.9-7-8 5.7-1 7-8Z"/>
+          <path d="M173 91q1.1 6 6 7-4.9 1-6 7-1.1-6-6-7 4.9-1 6-7Z"/>
+        </g>
+        <g fill="#e4b7c6" opacity=".8"><circle cx="37" cy="43" r="2"/><circle cx="165" cy="48" r="2"/><circle cx="180" cy="130" r="1.7"/></g>
+        <ellipse cx="100" cy="169" rx="76" ry="6" fill="#c9a4a6" opacity=".14"/>
+        <!-- Light bridal veil, behind left bear -->
+        <path d="M35 64C19 85 17 119 25 144c8 9 13 8 20-1C33 110 36 87 51 67Z" fill="#fffdfb" opacity=".8" stroke="#edd4dc" stroke-width="1.1"/>
+        <path d="M35 74C23 102 23 126 29 140" fill="none" stroke="#f4c7d6" stroke-width="1.2" stroke-linecap="round" opacity=".65"/>
+        <!-- Teddy bodies, positioned first so their heads feel plush -->
+        <ellipse cx="67" cy="141" rx="32" ry="31" fill="url(#teddyCream)" stroke="#ddbcaf" stroke-width="1.2"/>
+        <ellipse cx="135" cy="141" rx="32" ry="31" fill="url(#teddyCaramel)" stroke="#d3a580" stroke-width="1.2"/>
+        <ellipse cx="66" cy="145" rx="19" ry="20" fill="#fff9f3" opacity=".75"/>
+        <ellipse cx="136" cy="145" rx="19" ry="20" fill="#fff1df" opacity=".72"/>
+        <!-- Feet with tiny paw details -->
+        <ellipse cx="48" cy="162" rx="15" ry="10" fill="#f1d5c9" stroke="#dfbdae" stroke-width=".9"/>
+        <ellipse cx="85" cy="162" rx="15" ry="10" fill="#f1d5c9" stroke="#dfbdae" stroke-width=".9"/>
+        <ellipse cx="117" cy="162" rx="15" ry="10" fill="#dfb38b" stroke="#d3a580" stroke-width=".9"/>
+        <ellipse cx="153" cy="162" rx="15" ry="10" fill="#dfb38b" stroke="#d3a580" stroke-width=".9"/>
+        <g fill="#cd9e9c" opacity=".56"><ellipse cx="48" cy="164" rx="5" ry="2.8"/><ellipse cx="85" cy="164" rx="5" ry="2.8"/></g>
+        <g fill="#b98569" opacity=".46"><ellipse cx="117" cy="164" rx="5" ry="2.8"/><ellipse cx="153" cy="164" rx="5" ry="2.8"/></g>
+        <!-- Round plush ears -->
+        <circle cx="41" cy="62" r="16" fill="url(#teddyCream)" stroke="#dfbdb2" stroke-width="1.2"/>
+        <circle cx="88" cy="62" r="16" fill="url(#teddyCream)" stroke="#dfbdb2" stroke-width="1.2"/>
+        <circle cx="113" cy="62" r="16" fill="url(#teddyCaramel)" stroke="#d3a580" stroke-width="1.2"/>
+        <circle cx="160" cy="62" r="16" fill="url(#teddyCaramel)" stroke="#d3a580" stroke-width="1.2"/>
+        <g fill="#dca9b1" opacity=".7"><circle cx="41" cy="62" r="8.3"/><circle cx="88" cy="62" r="8.3"/></g>
+        <g fill="#ca8f7f" opacity=".53"><circle cx="113" cy="62" r="8.3"/><circle cx="160" cy="62" r="8.3"/></g>
+        <!-- Teddy faces -->
+        <circle cx="65" cy="92" r="37.5" fill="url(#teddyCream)" stroke="#dfbdb2" stroke-width="1.3"/>
+        <circle cx="136" cy="92" r="37.5" fill="url(#teddyCaramel)" stroke="#d3a580" stroke-width="1.3"/>
+        <ellipse cx="65" cy="107" rx="17.4" ry="12.5" fill="#fff8f3" opacity=".9"/>
+        <ellipse cx="136" cy="107" rx="17.4" ry="12.5" fill="#fff2df" opacity=".88"/>
+        <!-- Bear eyes with light catchpoints -->
+        <g fill="#4c3538"><circle cx="51" cy="91" r="3.2"/><circle cx="79" cy="91" r="3.2"/><circle cx="122" cy="91" r="3.2"/><circle cx="150" cy="91" r="3.2"/></g>
+        <g fill="white"><circle cx="51.8" cy="90.1" r="1.1"/><circle cx="79.8" cy="90.1" r="1.1"/><circle cx="122.8" cy="90.1" r="1.1"/><circle cx="150.8" cy="90.1" r="1.1"/></g>
+        <!-- Rosy, softly fuzzy cheeks -->
+        <g fill="#e7a2ae" opacity=".68"><ellipse cx="42" cy="104" rx="8" ry="4.8"/><ellipse cx="89" cy="104" rx="8" ry="4.8"/></g>
+        <g fill="#e9a4a0" opacity=".73"><ellipse cx="113" cy="104" rx="8" ry="4.8"/><ellipse cx="159" cy="104" rx="8" ry="4.8"/></g>
+        <!-- Tiny teddy noses + smiling mouths -->
+        <path d="M60 102Q65 98 70 102Q70 105 65 108Q60 105 60 102Z M131 102Q136 98 141 102Q141 105 136 108Q131 105 131 102Z" fill="#8d615e"/>
+        <g stroke="#815b58" stroke-width="1.7" stroke-linecap="round" fill="none"><path d="M65 108v4m0 0q-5 5-9 0m9 0q5 5 9 0"/><path d="M136 108v4m0 0q-5 5-9 0m9 0q5 5 9 0"/></g>
+        <!-- Bride's cute rose-pink ear bow -->
+        <g class="md-bear-bow" transform="translate(34 52)">
+          <path d="M0 0C-16-15-21 2-7 7Q-2 9 0 4C3 9 9 10 17 5C29-6 12-15 2 0Z" fill="url(#teddyBow)" stroke="#c87e98" stroke-width="1.15"/>
+          <circle cx="1" cy="2" r="5" fill="#e9aabc" stroke="#c87e98" stroke-width="1"/>
+          <circle cx=".1" cy="1" r="1.6" fill="#fff1f4" opacity=".95"/>
+        </g>
+        <!-- Groom's tiny champagne bowtie -->
+        <g transform="translate(136 131)" stroke="#ba8b66" stroke-width="1">
+          <path d="M0 2-13-5Q-17-4-13 5L0 7Z" fill="#dfb48b"/>
+          <path d="M0 2 13-5Q17-4 13 5L0 7Z" fill="#dfb48b"/>
+          <circle cx="0" cy="4" r="4.2" fill="#bd8a66"/>
+        </g>
+        <!-- Outstretched paws, touching at the center -->
+        <ellipse cx="94" cy="147" rx="12" ry="9" transform="rotate(-22 94 147)" fill="#f3dacd" stroke="#dfbdae" stroke-width="1"/>
+        <ellipse cx="108" cy="147" rx="12" ry="9" transform="rotate(22 108 147)" fill="#e4bd98" stroke="#d3a580" stroke-width="1"/>
+        <!-- Little shared heart between paws -->
+        <path d="M101 153c-11-6-13-12-9-15 4-3 8-1 9 2 1-3 5-5 9-2 5 4 1 10-9 15Z" fill="#d989a2" stroke="#c87792" stroke-width=".9"/>
+        <!-- Floating love heart above them -->
+        <path class="md-bear-heart" d="M100 40c-14-10-21-18-17-25 4-7 13-5 17 2 4-7 13-9 17-2 4 7-3 15-17 25Z" fill="url(#teddyHeart)"/>
+        <path d="M87 18q-2 6 1 9" fill="none" stroke="#fff9fb" stroke-width="2" stroke-linecap="round" opacity=".72"/>
+      </svg>
+    </div>
+    <div class="md-names" aria-label="Nam và Nhung">Nam &amp; Nhung</div>
     <div class="md-date" id="doorEventDate">16 · 11 · 2026 · 08/10 ÂL</div>
     <div class="md-note">Chạm để mở thiệp và bước vào ngày vui của chúng mình ♡</div>
   </div>
@@ -1469,14 +1618,18 @@ body{letter-spacing:.003em}
     <span class="room-no" data-reveal>Room 01 · Save The Date</span>
     <span class="room-title" data-reveal data-delay="1">The Date</span>
     <span class="room-script" data-reveal data-delay="2">Ngày mình thành đôi</span>
-    <p class="room-sub" id="dateRoomText" data-reveal data-delay="3">Thứ Hai, ngày 16 tháng 11 năm 2026 (08/10 ÂL) — lễ vu quy lúc 11:30 tại nhà gái, lễ thành hôn lúc 13:30 tại nhà trai. Hai gia đình mời cỗ từ 16:00 Chủ Nhật, 15/11.</p>
+    <div class="date-summary" id="dateRoomText" data-reveal data-delay="3">
+      <p class="date-summary-day">Thứ Hai, ngày 16 tháng 11 năm 2026 <span>(08/10 AL)</span></p>
+      <p class="date-summary-event">Lễ Vu Quy được tổ chức vào <strong>11:30</strong> tại nhà gái.</p>
+      <p class="date-summary-event">Lễ Thành Hôn được tổ chức vào <strong>13:30</strong> tại nhà trai.</p>
+    </div>
     <div class="calendar-card" data-reveal="zoom" data-delay="4">
       <div class="month-head"><strong>11</strong><span>November 2026</span></div>
       <div class="cal-grid">
         <div class="dow">T2</div><div class="dow">T3</div><div class="dow">T4</div><div class="dow">T5</div><div class="dow">T6</div><div class="dow">T7</div><div class="dow">CN</div>
         <div class="empty"></div><div class="empty"></div><div class="empty"></div><div class="empty"></div><div class="empty"></div><div class="empty"></div><div>1</div>
         <div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div>
-        <div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div class="mark meal-day" id="calendarMealDay" data-mark-label="MỜI CỖ">15</div>
+        <div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div id="calendarMealDay">15</div>
         <div class="mark" id="calendarCeremonyDay" data-mark-label="LỄ CƯỚI">16</div><div>17</div><div>18</div><div>19</div><div>20</div><div>21</div><div>22</div>
         <div>23</div><div>24</div><div>25</div><div>26</div><div>27</div><div>28</div><div>29</div>
       </div>
@@ -1515,8 +1668,8 @@ body{letter-spacing:.003em}
         <div class="cer-info">
           <div class="cer-label">Groom's Ceremony Room · Nhà Trai</div>
           <h2 class="cer-title">Lễ Thành Hôn</h2>
-          <div class="cer-row"><div class="cer-ico">💍</div><div><b>13:30 · Thứ Hai, 16/11/2026</b><span>Lễ thành hôn · 08/10 âm lịch</span></div></div>
-          <div class="cer-row"><div class="cer-ico">🍽️</div><div><b>Mời cỗ: 16:00 · Chủ Nhật, 15/11/2026</b><span>Ngày 07/10 âm lịch · Tiệc tại nhà trai</span><a class="meal-calendar" id="calMealGroom" href="#" target="_blank" rel="noopener">＋ Thêm lịch tiệc mời cỗ</a></div></div>
+          <div class="cer-row cer-row-ceremony"><div class="cer-ico" aria-hidden="true">💍</div><div><b>13:30. Thứ Hai, 16/11/2026 <span class="cer-lunar">(8/10 âm lịch)</span></b></div></div>
+          <div class="cer-row cer-row-meal"><div class="cer-ico" aria-hidden="true">🍽️</div><div><b>Tiệc nhà trai lúc: 16:00. Chủ Nhật, 15/11/2026</b><span>Tức 07/10 âm lịch. Tiệc tại nhà trai</span><a class="meal-calendar" id="calMealGroom" href="#" target="_blank" rel="noopener">＋ Thêm lịch tiệc nhà trai</a></div></div>
           <div class="cer-row"><div class="cer-ico">📍</div><div><b>Nhà Trai · Đình Nam</b><span>Thôn Tân Dân, xóm Cầu Trang, xã Xuân Cẩm, TP Bắc Ninh</span></div></div>
           <div class="cer-row"><div class="cer-ico">👨‍👩‍👦</div><div><b>Gia đình Nhà Trai</b><span>Bố: Đỗ Văn Thoa<br/>Mẹ: Nguyễn Thị Phiến</span></div></div>
           <div class="cer-actions"><a href="https://maps.app.goo.gl/nrDmnicryA1x7naw5?g_st=iz" target="_blank" rel="noopener noreferrer">Chỉ đường</a><a href="#" id="calGroom" target="_blank" rel="noopener">Thêm lịch lễ</a></div>
@@ -1528,8 +1681,8 @@ body{letter-spacing:.003em}
         <div class="cer-info">
           <div class="cer-label">Bride's Ceremony Room · Nhà Gái</div>
           <h2 class="cer-title">Lễ Vu Quy</h2>
-          <div class="cer-row"><div class="cer-ico">💍</div><div><b>11:30 · Thứ Hai, 16/11/2026</b><span>Lễ vu quy · 08/10 âm lịch</span></div></div>
-          <div class="cer-row"><div class="cer-ico">🍽️</div><div><b>Mời cỗ: 16:00 · Chủ Nhật, 15/11/2026</b><span>Ngày 07/10 âm lịch · Tiệc tại nhà gái</span><a class="meal-calendar" id="calMealBride" href="#" target="_blank" rel="noopener">＋ Thêm lịch tiệc mời cỗ</a></div></div>
+          <div class="cer-row cer-row-ceremony"><div class="cer-ico" aria-hidden="true">💍</div><div><b>11:30. Thứ Hai, 16/11/2026 <span class="cer-lunar">(8/10 âm lịch)</span></b></div></div>
+          <div class="cer-row cer-row-meal"><div class="cer-ico" aria-hidden="true">🍽️</div><div><b>Tiệc nhà gái lúc: 16:00. Chủ Nhật, 15/11/2026</b><span>Tức 07/10 âm lịch. Tiệc tại nhà gái</span><a class="meal-calendar" id="calMealBride" href="#" target="_blank" rel="noopener">＋ Thêm lịch tiệc nhà gái</a></div></div>
           <div class="cer-row"><div class="cer-ico">📍</div><div><b>Nhà Gái · Hồng Nhung</b><span>Xóm La Vương, xã Đồng Hỷ, Thái Nguyên</span></div></div>
           <div class="cer-row"><div class="cer-ico">👨‍👩‍👧</div><div><b>Gia đình Nhà Gái</b><span>Bố: Nguyễn Văn Chiểu<br/>Mẹ: Dương Thị Hồng</span></div></div>
           <div class="cer-actions"><a href="https://maps.app.goo.gl/Aqcb6Pwsxf9hGAtX6?g_st=iz" target="_blank" rel="noopener noreferrer">Chỉ đường</a><a href="#" id="calBride" target="_blank" rel="noopener">Thêm lịch lễ</a></div>
@@ -1716,7 +1869,8 @@ function applyWeddingDetails(){
   setText('ticketCode',`${WEDDING.ticketCode} · PRIVATE TICKET`);
   setText('ticketDate',`${WEDDING.dateDot} · ${WEDDING.lunar}`);
   setText('ticketTime',`11:30 & 13:30 · ${WEDDING.weekday}`);
-  setText('dateRoomText',`Thứ Hai, ngày 16 tháng 11 năm 2026 (${WEDDING.lunar}) — lễ vu quy lúc 11:30 tại nhà gái, lễ thành hôn lúc 13:30 tại nhà trai. Hai gia đình mời cỗ lúc 16:00 Chủ Nhật, 15/11 (07/10 ÂL).`);
+  // Nội dung Room 01 được trình bày thành ba dòng cố định trong HTML.
+  // Không ghi đè dateRoomText để giữ nguyên bố cục và phần chữ đã duyệt.
   setText('journeyEventDate',`${WEDDING.dateDot} · ${WEDDING.lunar}`);
   setText('closingEventDate',`Hẹn gặp bạn · ${WEDDING.dateDot} · ${WEDDING.lunar}`);
 }
@@ -1802,8 +1956,8 @@ for(const family of ['groom','bride']){
     `${name} - ${weddingCouple}`,new Date(info.start),new Date(info.end),
     `${name} · ${WEDDING.lunar} · Địa điểm: ${info.place} · Google Maps: ${info.map}`,info.place);
   document.getElementById(family==='groom'?'calMealGroom':'calMealBride').href=calendarUrl(
-    `Tiệc mời cỗ ${home} - ${weddingCouple}`,new Date(WEDDING.dinnerStart),new Date(WEDDING.dinnerEnd),
-    `Mời cỗ lúc 16:00 ngày 15/11/2026 (07/10 âm lịch) · Google Maps: ${info.map}`,info.place);
+    `Tiệc ${home} - ${weddingCouple}`,new Date(WEDDING.dinnerStart),new Date(WEDDING.dinnerEnd),
+    `Tiệc ${home.toLowerCase()} lúc 16:00, Chủ Nhật 15/11/2026 (07/10 âm lịch) · Google Maps: ${info.map}`,info.place);
 }
 
 /* Journey progress */

@@ -1457,6 +1457,28 @@ body{letter-spacing:.003em}
   .cer-row .cer-ico{width:32px;height:32px}
 }
 
+
+/* Nút mở thiệp rõ ràng cho khách mời; các hiệu ứng và xử lý mở thiệp giữ nguyên. */
+.md-open-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.65rem;
+  margin-top:1.3rem;padding:.9rem 1.32rem;min-height:52px;
+  border:1px solid rgba(255,255,255,.7);border-radius:999px;
+  color:#fff;background:linear-gradient(135deg,#d988a0 0%,#bb6d87 100%);
+  box-shadow:0 12px 30px rgba(173,82,112,.27),inset 0 1px 0 rgba(255,255,255,.23);
+  font-family:var(--sans);font-size:clamp(.81rem,3.5vw,.92rem);
+  font-weight:700;letter-spacing:.01em;white-space:nowrap;
+  cursor:pointer;touch-action:manipulation;
+  transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;
+}
+.md-open-btn:hover{transform:translateY(-2px);box-shadow:0 15px 34px rgba(173,82,112,.32);filter:brightness(1.04)}
+.md-open-btn:active{transform:scale(.97)}
+.md-open-btn:focus-visible{outline:3px solid #b78a54;outline-offset:4px}
+.md-open-icon{font-size:1.12rem;font-weight:400;line-height:1}
+.md-open-arrow{font-size:1.05rem;line-height:1}
+@media(max-height:570px){
+  .md-open-btn{margin-top:.7rem;min-height:46px;padding:.7rem 1.14rem}
+}
+
 </style>
 </head>
 <body>
@@ -1546,7 +1568,11 @@ body{letter-spacing:.003em}
     </div>
     <div class="md-names" aria-label="Nam và Nhung">Nam &amp; Nhung</div>
     <div class="md-date" id="doorEventDate">16 · 11 · 2026 · 08/10 ÂL</div>
-    <div class="md-note">Chạm để mở thiệp và bước vào ngày vui của chúng mình ♡</div>
+    <button type="button" id="openInvitationBtn" class="md-open-btn" aria-label="Chạm vào để xem thiệp cưới">
+      <span class="md-open-icon" aria-hidden="true">✉</span>
+      <span>Chạm vào để xem thiệp</span>
+      <span class="md-open-arrow" aria-hidden="true">→</span>
+    </button>
   </div>
 </div>
 
